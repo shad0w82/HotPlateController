@@ -4,7 +4,6 @@
 #include "display.h"
 #include "esp_bsp.h"
 #include "lv_port.h"
-#include "ui/ui.h"
 
 #define LVGL_PORT_ROTATION_DEGREE               (270)
 
@@ -61,8 +60,6 @@ void setup()
      // lv_demo_music();
      // lv_demo_stress();
 
-    ui_init();
-
     /* Release the mutex */
     bsp_display_unlock();
 
@@ -72,5 +69,4 @@ void setup()
 void loop()
 {
     lv_task_handler(); /* Let LVGL do its work. */
-    ui_tick();
 }
