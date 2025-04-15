@@ -76,13 +76,7 @@ typedef struct {
 
 typedef struct {
     SemaphoreHandle_t tp_intr_event;    /*!< Semaphore for tp interrupt */
-    #if LVGL_VERSION_MAJOR == 8
     lv_disp_rot_t   rotate;    /* Panel software rotate_mask */
-    #elif LVGL_VERSION_MAJOR == 9
-    lv_disp_rotation_t rotate;
-    #else 
-    #error "No compatible LVGL version"
-    #endif
 } bsp_touch_int_t;
 
 static lv_disp_t *disp;

@@ -4,15 +4,8 @@
 #include "display.h"
 #include "esp_bsp.h"
 #include "lv_port.h"
+#include "ui/ui.h"
 
-/**
- * Set the rotation degree:
- *      - 0: 0 degree
- *      - 90: 90 degree
- *      - 180: 180 degree
- *      - 270: 270 degree
- *
- */
 #define LVGL_PORT_ROTATION_DEGREE               (270)
 
 /**
@@ -46,7 +39,7 @@ void setup()
 
     bsp_display_start_with_config(&cfg);
     bsp_display_backlight_on();
-    bsp_display_brightness_set(30);
+    bsp_display_brightness_set(100);
 
     Serial.println("Create UI");
     /* Lock the mutex due to the LVGL APIs are not thread-safe */
@@ -68,6 +61,8 @@ void setup()
      // lv_demo_music();
      // lv_demo_stress();
 
+    ui_init();
+
     /* Release the mutex */
     bsp_display_unlock();
 
@@ -76,6 +71,6 @@ void setup()
 
 void loop()
 {
-    Serial.println("IDLE loop");
-    delay(1000);
+    lv_task_handler(); /* Let LVGL do its work. */
+    ui_tick();
 }

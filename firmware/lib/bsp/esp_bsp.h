@@ -56,14 +56,7 @@ extern "C" {
 typedef struct {
     lvgl_port_cfg_t lvgl_port_cfg;  /*!< Configuration for the LVGL port */
     uint32_t buffer_size;           /*!< Size of the buffer for the screen in pixels */
-
-    #if LVGL_VERSION_MAJOR == 8
-    lv_disp_rot_t   rotate;    /* Panel software rotate_mask */
-    #elif LVGL_VERSION_MAJOR == 9
-    lv_disp_rotation_t rotate;
-    #else 
-    #error "No compatible LVGL version"
-    #endif           /*!< Rotation configuration for the display */
+    lv_disp_rot_t   rotate;         /*!< Rotation configuration for the display */
 } bsp_display_cfg_t;
 
 /**
